@@ -1,2 +1,19 @@
-# Nothing Needed
-# No-Op
+# language setting
+language: go
+go: 
+- 1.3
+
+before_install:
+- source $HOME/.gvm/scripts/gvm
+- if [[ $SHIPPABLE_GO_VERSION =~ [0-9].[0-9] ]]; then gvm install go$SHIPPABLE_GO_VERSION; gvm use go$SHIPPABLE_GO_VERSION; fi
+- export GOPATH=$SHIPPABLE_GOPATH
+
+# before_script:
+# - mkdir -p shippable/buildoutput
+
+# Not much here really
+script:
+- pwd
+
+# after_script:
+# - cp -r prom-forever ./shippable/buildoutput
