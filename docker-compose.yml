@@ -1,0 +1,25 @@
+cadvisor:
+    container_name: cadvisor
+    image: google/cadvisor
+    ports: 
+        - "9777:8080"
+    restart: always
+    volumes:
+        - /var/run:/var/run:rw
+        - /sys:/sys:ro
+        - /var/lib/docker/:var/lib/docker:ro
+prom-server-config: 
+    container_name: prom-server-config
+    image: behemphi/prom-server-config
+    restart: always 
+    volumes:
+        - /stackengine
+prom-server:
+    command: -config.file=/stackengine/prom-config.yml
+    container_name: prom-server
+    image: behemphi/prom-server
+    ports: 
+        - "9778:9090"
+    restart: always
+    volumes_from: 
+        - prom-server-config    
