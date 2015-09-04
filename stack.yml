@@ -42,6 +42,4 @@ containers:
           protocol: tcp
           container_port: "9090"
     host_config:
-      volumes_from:
-        - prom-server-config
       restart_policy: {}
