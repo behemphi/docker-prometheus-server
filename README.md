@@ -2,10 +2,10 @@
 
 The `docker-prometheus` repository is meant to support an introduction
 to the [Prometheus](http://prometheus.io) monitoring tool described in [this 
-blog post](http://stackengine.com/?p=1117).
+blog post](http://stackengine.com/?p=1117). It will only work on a single node.
 
-Additionally this repo provides code for a way to provide both default and 
-dynamic configuration to a Docker container.
+Additionally this repo provides code for a way to use both a local default
+configuration and dynamic configuration stored in a dedicated data container.
 
 # Usage
 
@@ -35,6 +35,21 @@ You can explore the basics of the Prometheus UI now by going to
 `http://nodeIP:9778`.  Check the above referenced blog for more detail.
 
 Note: The host port is changed because 9090 is too common a choice for web apps.
+
+## Running in StackEngine Container Application Center
+
+To run cAdvisor and Prometheus server in your StackEngine CAC:
+
+* Start a new app by clicking the Applications item on the left menu
+* Name your app and click "Save"
+* Click "Create First Version"
+* Click the "Advanced Editor" in the upper right
+* Copy and paste the contents of `stack.yml`, then click "Apply"
+* Click "Save" in the upper right corner
+* Click the green "Launch" button, Tag the image and Click "Launch" again
+* Name the Instance, choose the Tag and Pool (Deploy To), then Click "Launch"
+
+Navigate your browser to `http://nodeIP:9778` and to see Prometheus functioning.
 
 
 ## Using the Dedicated Config Container
